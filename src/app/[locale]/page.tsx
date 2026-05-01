@@ -65,25 +65,26 @@ export default async function HomePage({
   return (
     <>
       {/* HERO */}
-      <section className="relative overflow-hidden bg-brand-black text-white">
+      <section className="relative overflow-hidden hero-grad border-b border-line">
+        {/* subtle gold glow — visible in both modes */}
         <div
-          className="absolute inset-0 opacity-30"
+          className="pointer-events-none absolute inset-0"
           style={{
             backgroundImage:
-              "radial-gradient(60% 60% at 80% 0%, rgba(245,197,24,0.45), transparent 60%), radial-gradient(50% 50% at 0% 100%, rgba(245,197,24,0.25), transparent 60%)",
+              "radial-gradient(55% 55% at 80% -5%, rgba(245,197,24,0.18), transparent 65%), radial-gradient(40% 40% at -5% 100%, rgba(245,197,24,0.1), transparent 65%)",
           }}
           aria-hidden
         />
         <div className="container-x relative grid gap-10 py-16 sm:py-24 lg:grid-cols-2 lg:items-center">
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full bg-brand-gold/15 px-3 py-1 text-xs font-bold uppercase tracking-widest text-brand-gold">
+            <span className="inline-flex items-center gap-2 rounded-full bg-brand-gold/20 px-3 py-1 text-xs font-bold uppercase tracking-widest text-brand-goldDark dark:text-brand-gold">
               <span className="h-1.5 w-1.5 rounded-full bg-brand-gold" />
               Haarlem · Bernadottelaan 3A
             </span>
-            <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.05] tracking-tight">
+            <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.05] tracking-tight text-fg">
               {dict.tagline}
             </h1>
-            <p className="mt-5 max-w-lg text-white/75 text-lg">
+            <p className="mt-5 max-w-lg text-fg-muted text-lg">
               {dict.home.heroSub}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -95,7 +96,7 @@ export default async function HomePage({
               </Link>
               <Link
                 href={`/${locale}/offers`}
-                className="inline-flex items-center justify-center rounded-full border border-white/25 px-6 py-3 font-bold hover:bg-white/10 transition"
+                className="inline-flex items-center justify-center rounded-full border border-line px-6 py-3 font-bold text-fg hover:bg-surface-mute transition"
               >
                 {dict.cta.seeOffers}
               </Link>
@@ -103,7 +104,7 @@ export default async function HomePage({
           </div>
 
           <div className="relative">
-            <div className="relative mx-auto aspect-[5/4] w-full max-w-xl overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
+            <div className="relative mx-auto aspect-[5/4] w-full max-w-xl overflow-hidden rounded-3xl border border-line shadow-card">
               <Image
                 src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=1400&q=80"
                 alt={dict.tagline}
@@ -113,13 +114,13 @@ export default async function HomePage({
                 className="object-cover"
               />
             </div>
-            <div className="absolute -bottom-6 start-6 rounded-2xl bg-surface text-fg px-5 py-4 shadow-card max-w-[18rem]">
+            <div className="absolute -bottom-6 start-6 rounded-2xl bg-surface-elev border border-line text-fg px-5 py-4 shadow-card max-w-[18rem]">
               <div className="flex items-center gap-3">
                 <div className="grid h-10 w-10 place-items-center rounded-xl bg-brand-gold text-brand-black text-xl">
                   ★
                 </div>
                 <div>
-                  <div className="text-sm font-bold">{dict.home.why.fresh.t}</div>
+                  <div className="text-sm font-bold text-fg">{dict.home.why.fresh.t}</div>
                   <div className="text-xs text-fg-muted">
                     {dict.home.why.fresh.d}
                   </div>
@@ -272,7 +273,7 @@ export default async function HomePage({
       )}
 
       {/* WHY CHOOSE US */}
-      <Section title={dict.home.whyTitle} className="bg-brand-black text-white">
+      <Section title={dict.home.whyTitle} className="band-gold">
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {(
             [
@@ -286,13 +287,13 @@ export default async function HomePage({
             return (
               <div
                 key={key}
-                className="rounded-2xl bg-white/5 border border-white/10 p-6 backdrop-blur-sm hover:bg-white/[0.07] transition"
+                className="rounded-2xl bg-surface-elev border border-line p-6 shadow-card hover:shadow-cardHover transition"
               >
                 <div className="grid h-12 w-12 place-items-center rounded-xl bg-brand-gold text-brand-black text-xl font-extrabold">
                   {icon}
                 </div>
-                <h3 className="mt-4 text-lg font-bold">{item.t}</h3>
-                <p className="mt-1 text-sm text-white/70">{item.d}</p>
+                <h3 className="mt-4 text-lg font-bold text-fg">{item.t}</h3>
+                <p className="mt-1 text-sm text-fg-muted">{item.d}</p>
               </div>
             );
           })}

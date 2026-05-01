@@ -6,26 +6,41 @@
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-arabic: "Cairo", "Tajawal", "Noto Naskh Arabic", Tahoma, sans-serif;
 
-  /* Light theme tokens (RGB triplets, used with /alpha-value) */
-  --surface: 255 255 255;
-  --surface-elev: 255 255 255;
-  --surface-mute: 244 244 246;
-  --fg: 11 11 14;
-  --fg-muted: 60 60 67;
-  --fg-subtle: 110 110 120;
-  --line: 231 231 234;
+  /* ─── Light theme — warm cream ─────────────────── */
+  --surface:      254 252 247;   /* #FEFCF7 */
+  --surface-elev: 255 255 255;   /* #FFFFFF */
+  --surface-mute: 250 247 240;   /* #FAF7F0 */
+  --fg:           26  20  8;     /* #1A1408 */
+  --fg-muted:     95  80  58;    /* #5F5038 */
+  --fg-subtle:    158 138 110;   /* #9E8A6E */
+  --line:         232 222 204;   /* #E8DECC */
+
+  /* hero section colours */
+  --hero-from:    #FFF5CE;
+  --hero-via:     #FFFFFF;
+  --hero-to:      #FFF9E6;
+
+  /* "why-us" band */
+  --band-gold:    #FFF3CC;
 
   color-scheme: light;
 }
 
 html.dark {
-  --surface: 12 12 14;
-  --surface-elev: 22 22 26;
-  --surface-mute: 28 28 32;
-  --fg: 245 245 247;
-  --fg-muted: 200 200 210;
-  --fg-subtle: 145 145 158;
-  --line: 38 38 44;
+  /* ─── Dark theme — warm charcoal ───────────────── */
+  --surface:      20  18  12;    /* #14120C */
+  --surface-elev: 30  26  16;    /* #1E1A10 */
+  --surface-mute: 40  35  22;    /* #282316 */
+  --fg:           245 240 225;   /* #F5F0E1 */
+  --fg-muted:     190 175 148;   /* #BEAF94 */
+  --fg-subtle:    130 118 95;    /* #82765F  */
+  --line:         52  46  28;    /* #342E1C */
+
+  --hero-from:    #1A1508;
+  --hero-via:     #20190C;
+  --hero-to:      #14120A;
+
+  --band-gold:    #1E1A0E;
 
   color-scheme: dark;
 }
@@ -45,32 +60,22 @@ html[dir="rtl"] body {
   font-family: var(--font-arabic);
 }
 
-/* Smooth focus ring */
 :focus-visible {
   @apply outline-none ring-2 ring-brand-gold ring-offset-2 ring-offset-surface rounded;
 }
 
-/* Container helper */
 .container-x {
   @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
 }
 
-/* Headings */
-h1, h2, h3 {
-  letter-spacing: -0.01em;
-}
+h1, h2, h3 { letter-spacing: -0.01em; }
 
-/* Card primitive */
 .card {
-  @apply rounded-2xl bg-surface-elev border border-line shadow-card dark:shadow-cardDark transition-colors;
+  @apply rounded-2xl bg-surface-elev border border-line shadow-card transition-colors;
 }
 
-/* Subtle muted band background used for sections */
-.band-mute {
-  @apply bg-surface-mute;
-}
-
-/* Soft divider */
-.hr-soft {
-  @apply h-px w-full bg-line;
+.band-mute  { @apply bg-surface-mute; }
+.band-gold  { background-color: var(--band-gold); }
+.hero-grad  {
+  background: linear-gradient(135deg, var(--hero-from), var(--hero-via), var(--hero-to));
 }

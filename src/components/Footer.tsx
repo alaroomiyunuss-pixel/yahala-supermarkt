@@ -13,7 +13,7 @@ export default function Footer({
 }) {
   const year = new Date().getFullYear();
   return (
-    <footer className="mt-20 bg-brand-black text-white">
+    <footer className="mt-20 bg-[#18150A] dark:bg-[#12100A] text-white border-t border-white/5">
       <div className="container-x py-12 grid gap-10 md:grid-cols-3">
         <div>
           <Logo locale={locale} />
