@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-arabic: "Cairo", "Tajawal", "Noto Naskh Arabic", Tahoma, sans-serif;
+
+  /* Light theme tokens (RGB triplets, used with /alpha-value) */
+  --surface: 255 255 255;
+  --surface-elev: 255 255 255;
+  --surface-mute: 244 244 246;
+  --fg: 11 11 14;
+  --fg-muted: 60 60 67;
+  --fg-subtle: 110 110 120;
+  --line: 231 231 234;
+
+  color-scheme: light;
+}
+
+html.dark {
+  --surface: 12 12 14;
+  --surface-elev: 22 22 26;
+  --surface-mute: 28 28 32;
+  --fg: 245 245 247;
+  --fg-muted: 200 200 210;
+  --fg-subtle: 145 145 158;
+  --line: 38 38 44;
+
+  color-scheme: dark;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  scrollbar-gutter: stable;
+}
+
+body {
+  @apply bg-surface text-fg antialiased transition-colors duration-200;
+  font-family: var(--font-sans);
+}
+
+html[dir="rtl"] body {
+  font-family: var(--font-arabic);
+}
+
+/* Smooth focus ring */
+:focus-visible {
+  @apply outline-none ring-2 ring-brand-gold ring-offset-2 ring-offset-surface rounded;
+}
+
+/* Container helper */
+.container-x {
+  @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+/* Headings */
+h1, h2, h3 {
+  letter-spacing: -0.01em;
+}
+
+/* Card primitive */
+.card {
+  @apply rounded-2xl bg-surface-elev border border-line shadow-card dark:shadow-cardDark transition-colors;
+}
+
+/* Subtle muted band background used for sections */
+.band-mute {
+  @apply bg-surface-mute;
+}
+
+/* Soft divider */
+.hr-soft {
+  @apply h-px w-full bg-line;
+}
