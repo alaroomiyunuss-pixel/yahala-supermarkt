@@ -2,16 +2,24 @@ import Link from "next/link";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import { isAdmin } from "@/lib/auth";
+import { getAdminLang } from "@/lib/adminLang";
+import { adminDicts } from "../adminDict";
 import { getServerClient, hasSupabase, type Product } from "@/lib/supabase";
 import { deleteProduct } from "../actions";
 
 export default async function ProductsAdmin() {
   if (!(await isAdmin())) redirect("/admin/login");
 
+  const lang = await getAdminLang();
+  const d = adminDicts[lang];
+  const dp = d.products;
+  const isAr = lang === "ar";
+
   let products: Product[] = [];
   let warning: string | null = null;
+
   if (!hasSupabase()) {
-    warning = "Supabase is not configured — connect it to manage products.";
+    warning = d.sb.notConfigured;
   } else {
     const sb = getServerClient();
     if (sb) {
@@ -25,17 +33,19 @@ export default async function ProductsAdmin() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className={`space-y-6 ${isAr ? "text-right" : ""}`}>
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-extrabold">Products</h1>
-          <p className="text-black/60 text-sm">{products.length} total</p>
+          <h1 className="text-2xl font-extrabold">{dp.title}</h1>
+          <p className="text-black/60 text-sm">
+            {products.length} {dp.total}
+          </p>
         </div>
         <Link
           href="/admin/products/new"
-          className="rounded-lg bg-brand-black text-brand-gold px-4 py-2 font-bold hover:bg-black"
+          className="rounded-lg bg-brand-black text-brand-gold px-4 py-2 font-bold hover:bg-black transition"
         >
-          + New product
+          {dp.newProduct}
         </Link>
       </div>
 
@@ -49,27 +59,29 @@ export default async function ProductsAdmin() {
         <table className="w-full text-sm">
           <thead className="bg-black/5 text-left">
             <tr>
-              <th className="p-3">Image</th>
-              <th className="p-3">Name (NL)</th>
-              <th className="p-3">Name (AR)</th>
-              <th className="p-3">Category</th>
-              <th className="p-3">Price</th>
-              <th className="p-3">Featured</th>
-              <th className="p-3 text-right">Actions</th>
+              <th className="p-3">{dp.headers.image}</th>
+              <th className="p-3">{dp.headers.nameNl}</th>
+              <th className="p-3">{dp.headers.nameAr}</th>
+              <th className="p-3">{dp.headers.category}</th>
+              <th className="p-3">{dp.headers.price}</th>
+              <th className="p-3">{dp.headers.featured}</th>
+              <th className={`p-3 ${isAr ? "text-left" : "text-right"}`}>
+                {dp.headers.actions}
+              </th>
             </tr>
           </thead>
           <tbody>
             {products.length === 0 && (
               <tr>
                 <td colSpan={7} className="p-8 text-center text-black/50">
-                  No products yet.
+                  {dp.empty}
                 </td>
               </tr>
             )}
             {products.map((p) => (
               <tr key={p.id} className="border-t border-black/5">
                 <td className="p-3">
-                  <div className="relative h-12 w-12 overflow-hidden rounded-lg bg-brand-gray">
+                  <div className="relative h-12 w-12 overflow-hidden rounded-lg bg-[#F4F1EA]">
                     {p.image_url && (
                       <Image
                         src={p.image_url}
@@ -82,26 +94,27 @@ export default async function ProductsAdmin() {
                   </div>
                 </td>
                 <td className="p-3 font-semibold">{p.name_nl}</td>
-                <td className="p-3" dir="rtl" lang="ar">{p.name_ar}</td>
+                <td className="p-3" dir="rtl" lang="ar">
+                  {p.name_ar}
+                </td>
                 <td className="p-3 text-black/60">{p.category || "—"}</td>
                 <td className="p-3">
                   {p.price != null ? `€${Number(p.price).toFixed(2)}` : "—"}
                 </td>
-                <td className="p-3">{p.featured ? "★" : ""}</td>
-                <td className="p-3 text-right">
+                <td className="p-3 text-brand-gold">
+                  {p.featured ? "★" : ""}
+                </td>
+                <td className={`p-3 ${isAr ? "text-left" : "text-right"}`}>
                   <Link
                     href={`/admin/products/${p.id}`}
                     className="text-brand-goldDark font-bold hover:underline"
                   >
-                    Edit
+                    {dp.edit}
                   </Link>
                   <form action={deleteProduct} className="inline ms-3">
                     <input type="hidden" name="id" value={p.id} />
-                    <button
-                      className="text-red-600 hover:underline font-bold"
-                      formAction={deleteProduct}
-                    >
-                      Delete
+                    <button className="text-red-600 hover:underline font-bold">
+                      {dp.del}
                     </button>
                   </form>
                 </td>

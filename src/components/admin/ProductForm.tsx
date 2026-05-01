@@ -1,21 +1,26 @@
 import Image from "next/image";
 import type { Category, Product } from "@/lib/supabase";
+import type { AdminDict } from "@/app/admin/adminDict";
 import { saveProduct } from "@/app/admin/actions";
 
 export default function ProductForm({
   product,
   categories,
+  dict,
 }: {
   product?: Product | null;
   categories: Category[];
+  dict: AdminDict;
 }) {
+  const f = dict.form;
   return (
     <form action={saveProduct} className="space-y-6 max-w-2xl">
       {product?.id && (
         <input type="hidden" name="id" defaultValue={product.id} />
       )}
+
       <div className="grid gap-4 sm:grid-cols-2">
-        <Field label="Name (NL)" required>
+        <Field label={f.nameNl} required>
           <input
             name="name_nl"
             required
@@ -23,7 +28,7 @@ export default function ProductForm({
             className="input"
           />
         </Field>
-        <Field label="Name (AR)" required>
+        <Field label={f.nameAr} required>
           <input
             name="name_ar"
             required
@@ -33,13 +38,13 @@ export default function ProductForm({
             lang="ar"
           />
         </Field>
-        <Field label="Category">
+        <Field label={f.category}>
           <select
             name="category"
             defaultValue={product?.category ?? ""}
             className="input"
           >
-            <option value="">— none —</option>
+            <option value="">{f.categoryNone}</option>
             {categories.map((c) => (
               <option key={c.id} value={c.slug}>
                 {c.name_nl} ({c.slug})
@@ -47,7 +52,7 @@ export default function ProductForm({
             ))}
           </select>
         </Field>
-        <Field label="Price (EUR)">
+        <Field label={f.price}>
           <input
             name="price"
             type="number"
@@ -59,7 +64,7 @@ export default function ProductForm({
         </Field>
       </div>
 
-      <Field label="Image URL (or upload below)">
+      <Field label={f.imageUrl}>
         <input
           name="image_url"
           type="url"
@@ -69,22 +74,20 @@ export default function ProductForm({
         />
       </Field>
 
-      <Field label="Upload image">
+      <Field label={f.imageUpload}>
         <input
           name="image"
           type="file"
           accept="image/*"
           className="block w-full text-sm file:mr-3 file:rounded-lg file:border-0 file:bg-brand-black file:px-4 file:py-2 file:font-bold file:text-brand-gold hover:file:bg-black"
         />
-        <p className="mt-1 text-xs text-black/50">
-          If you upload a file it will replace the URL above.
-        </p>
+        <p className="mt-1 text-xs text-black/50">{f.imageNote}</p>
       </Field>
 
       {product?.image_url && (
         <div>
-          <p className="text-sm font-semibold mb-2">Current image</p>
-          <div className="relative h-32 w-32 overflow-hidden rounded-lg bg-brand-gray">
+          <p className="text-sm font-semibold mb-2">{f.currentImage}</p>
+          <div className="relative h-32 w-32 overflow-hidden rounded-lg bg-[#F4F1EA]">
             <Image
               src={product.image_url}
               alt={product.name_nl}
@@ -103,18 +106,18 @@ export default function ProductForm({
           defaultChecked={!!product?.featured}
           className="h-4 w-4"
         />
-        Featured (shown on homepage)
+        {f.featured}
       </label>
 
       <div className="flex gap-3 pt-2">
-        <button className="rounded-lg bg-brand-black text-brand-gold px-5 py-2.5 font-bold hover:bg-black">
-          Save
+        <button className="rounded-lg bg-brand-black text-brand-gold px-5 py-2.5 font-bold hover:bg-black transition">
+          {f.save}
         </button>
         <a
           href="/admin/products"
-          className="rounded-lg border border-black/10 bg-white px-5 py-2.5 font-bold hover:border-brand-gold"
+          className="rounded-lg border border-black/10 bg-white px-5 py-2.5 font-bold hover:border-brand-gold transition"
         >
-          Cancel
+          {f.cancel}
         </a>
       </div>
 

@@ -1,14 +1,22 @@
 import Image from "next/image";
 import type { Offer } from "@/lib/supabase";
+import type { AdminDict } from "@/app/admin/adminDict";
 import { saveOffer } from "@/app/admin/actions";
 
-export default function OfferForm({ offer }: { offer?: Offer | null }) {
+export default function OfferForm({
+  offer,
+  dict,
+}: {
+  offer?: Offer | null;
+  dict: AdminDict;
+}) {
+  const f = dict.form;
   return (
     <form action={saveOffer} className="space-y-6 max-w-2xl">
       {offer?.id && <input type="hidden" name="id" defaultValue={offer.id} />}
 
       <div className="grid gap-4 sm:grid-cols-2">
-        <Field label="Title (NL)" required>
+        <Field label={f.titleNl} required>
           <input
             name="title_nl"
             required
@@ -16,7 +24,7 @@ export default function OfferForm({ offer }: { offer?: Offer | null }) {
             className="input"
           />
         </Field>
-        <Field label="Title (AR)" required>
+        <Field label={f.titleAr} required>
           <input
             name="title_ar"
             required
@@ -28,7 +36,7 @@ export default function OfferForm({ offer }: { offer?: Offer | null }) {
         </Field>
       </div>
 
-      <Field label="Description (NL)">
+      <Field label={f.descNl}>
         <textarea
           name="description_nl"
           rows={3}
@@ -37,7 +45,7 @@ export default function OfferForm({ offer }: { offer?: Offer | null }) {
         />
       </Field>
 
-      <Field label="Description (AR)">
+      <Field label={f.descAr}>
         <textarea
           name="description_ar"
           rows={3}
@@ -48,19 +56,19 @@ export default function OfferForm({ offer }: { offer?: Offer | null }) {
         />
       </Field>
 
-      <Field label="Kind">
+      <Field label={f.kind}>
         <select
           name="kind"
           defaultValue={offer?.kind ?? "weekly"}
           className="input"
         >
-          <option value="daily">Daily — عرض اليوم</option>
-          <option value="weekly">Weekly — عرض الأسبوع</option>
-          <option value="monthly">Monthly — عرض الشهر</option>
+          <option value="daily">{f.kindDaily}</option>
+          <option value="weekly">{f.kindWeekly}</option>
+          <option value="monthly">{f.kindMonthly}</option>
         </select>
       </Field>
 
-      <Field label="Image URL (or upload below)">
+      <Field label={f.imageUrl}>
         <input
           name="image_url"
           type="url"
@@ -70,7 +78,7 @@ export default function OfferForm({ offer }: { offer?: Offer | null }) {
         />
       </Field>
 
-      <Field label="Upload image">
+      <Field label={f.imageUpload}>
         <input
           name="image"
           type="file"
@@ -81,8 +89,8 @@ export default function OfferForm({ offer }: { offer?: Offer | null }) {
 
       {offer?.image_url && (
         <div>
-          <p className="text-sm font-semibold mb-2">Current image</p>
-          <div className="relative h-32 w-48 overflow-hidden rounded-lg bg-brand-gray">
+          <p className="text-sm font-semibold mb-2">{f.currentImage}</p>
+          <div className="relative h-32 w-48 overflow-hidden rounded-lg bg-[#F4F1EA]">
             <Image
               src={offer.image_url}
               alt={offer.title_nl}
@@ -101,18 +109,18 @@ export default function OfferForm({ offer }: { offer?: Offer | null }) {
           defaultChecked={offer ? !!offer.active : true}
           className="h-4 w-4"
         />
-        Active (visible on site)
+        {f.activeLabel}
       </label>
 
       <div className="flex gap-3 pt-2">
-        <button className="rounded-lg bg-brand-black text-brand-gold px-5 py-2.5 font-bold hover:bg-black">
-          Save
+        <button className="rounded-lg bg-brand-black text-brand-gold px-5 py-2.5 font-bold hover:bg-black transition">
+          {f.save}
         </button>
         <a
           href="/admin/offers"
-          className="rounded-lg border border-black/10 bg-white px-5 py-2.5 font-bold hover:border-brand-gold"
+          className="rounded-lg border border-black/10 bg-white px-5 py-2.5 font-bold hover:border-brand-gold transition"
         >
-          Cancel
+          {f.cancel}
         </a>
       </div>
 
