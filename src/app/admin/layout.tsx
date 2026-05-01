@@ -18,7 +18,7 @@ export default async function AdminLayout({
   const isAr = lang === "ar";
 
   return (
-    <html lang={lang} dir={d.dir}>
+    <html lang={lang} dir={d.dir} suppressHydrationWarning>
       <body className="bg-[#F4F1EA] min-h-screen">
         {authed ? (
           <div className={`flex min-h-screen ${isAr ? "flex-row-reverse" : ""}`}>
@@ -96,7 +96,7 @@ function SideLink({
   );
 }
 
-async function LangButton({
+function LangButton({
   lang,
   current,
   label,
