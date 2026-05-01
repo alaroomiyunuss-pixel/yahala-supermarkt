@@ -24,11 +24,11 @@ begin
 
       -- Groenten
       ('Verse tomaten',       'طماطم طازجة',        'vegetables', 'https://images.unsplash.com/photo-1546470427-e3f3a3f8c2b6?w=800&q=80',  1.99, true),
-      ('Komkommer',           'خيار',               'vegetables', 'https://images.unsplash.com/photo-1604977042946-1eecc30f269e?w=800&q=80', 0.89, false),
+      ('Komkommer',           'خيار',               'vegetables', 'https://images.unsplash.com/photo-1449300079323-02e209d9d3a6?w=800&q=80', 0.89, false),
       ('Paprika rood',        'فلفل أحمر',           'vegetables', 'https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?w=800&q=80',  1.49, true),
       ('Aubergine',           'باذنجان',             'vegetables', 'https://images.unsplash.com/photo-1659261200833-ec8761558af7?w=800&q=80', 1.69, false),
       ('Verse munt',          'نعناع طازج',          'vegetables', 'https://images.unsplash.com/photo-1628557044797-f21a177c37ec?w=800&q=80', 0.99, false),
-      ('Peterselie',          'بقدونس',              'vegetables', 'https://images.unsplash.com/photo-1583664580942-c997a2861c54?w=800&q=80', 0.99, false),
+      ('Peterselie',          'بقدونس',              'vegetables', 'https://images.unsplash.com/photo-1727950941918-a994b1b7dd14?w=800&q=80', 0.99, false),
       ('Courgette',           'كوسا',               'vegetables', 'https://images.unsplash.com/photo-1622206151226-18ca2c9ab4a1?w=800&q=80', 1.29, false),
 
       -- Fruit
@@ -57,23 +57,23 @@ begin
       ('Tahin (sesampasta)',         'طحينة',               'daily', 'https://images.unsplash.com/photo-1611762687115-7b6c44a59c84?w=800&q=80',  4.49, false),
 
       -- Jemenitisch
-      ('Bint Al-Sahn',              'بنت الصحن',           'yemeni', 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=80',  6.99, true),
+      ('Bint Al-Sahn',              'بنت الصحن',           'yemeni', 'https://images.unsplash.com/photo-1556040220-4096d522378d?w=800&q=80',  6.99, true),
       ('Hadhrami honing',           'عسل حضرمي',           'yemeni', 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=800&q=80', 24.99, true),
       ('Mandi kruidenmix',          'بهارات مندي',          'yemeni', 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=800&q=80',  3.49, false),
       ('Hilbe (fenegriek pasta)',    'حلبة',                'yemeni', 'https://images.unsplash.com/photo-1599909366516-6c1c7aaafe3a?w=800&q=80',  2.99, false),
-      ('Saltah pasta',              'صلطة جاهزة',           'yemeni', 'https://images.unsplash.com/photo-1601001435957-74f0958a93c5?w=800&q=80',  4.49, false),
+      ('Saltah pasta',              'صلطة جاهزة',           'yemeni', 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800&q=80',  4.49, false),
       ('Mocha koffiebonen',         'بن مخا',              'yemeni', 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=800&q=80', 12.99, true),
-      ('Yemenitisch zwart komijn',  'حبة البركة اليمنية',  'yemeni', 'https://images.unsplash.com/photo-1599571234909-29ed5d1de8c2?w=800&q=80',  3.99, false),
+      ('Yemenitisch zwart komijn',  'حبة البركة اليمنية',  'yemeni', 'https://images.unsplash.com/photo-1607109829788-9f1e2b67bf8e?w=800&q=80',  3.99, false),
 
       -- Syrisch
       ('Makdous (gevulde aubergines)', 'مكدوس',            'syrian', 'https://images.unsplash.com/photo-1611080541599-8c6dbde6ed28?w=800&q=80',  7.99, true),
       ('Muhammara',                    'محمرة',             'syrian', 'https://images.unsplash.com/photo-1625944525533-473d2c8a6347?w=800&q=80',  5.49, false),
       ('Aleppo zeep',                  'صابون حلب',         'syrian', 'https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?w=800&q=80',  3.99, true),
-      ('Halawet el-Jibn',              'حلاوة الجبن',       'syrian', 'https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=800&q=80',  6.49, false),
+      ('Halawet el-Jibn',              'حلاوة الجبن',       'syrian', 'https://images.unsplash.com/photo-1559181567-c3190bfbf4f9?w=800&q=80',  6.49, false),
       ('Bulgur (fijn)',                'برغل ناعم',         'syrian', 'https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?w=800&q=80',  2.99, false),
       ('Damascus rozenwater',          'ماء ورد دمشقي',     'syrian', 'https://images.unsplash.com/photo-1617791160588-241658c0f566?w=800&q=80',  3.49, false),
       ('Za''atar mix',                 'زعتر',              'syrian', 'https://images.unsplash.com/photo-1599909533839-f1bba2cf1a7e?w=800&q=80',  4.99, true),
-      ('Ka''ak (sesambroodje)',         'كعك بالسمسم',       'syrian', 'https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=800&q=80',  2.49, false);
+      ('Ka''ak (sesambroodje)',         'كعك بالسمسم',       'syrian', 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=800&q=80',  2.49, false);
 
   end if;
 end $$;

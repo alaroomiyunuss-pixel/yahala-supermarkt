@@ -6,8 +6,9 @@ import {
   type Product,
 } from "./supabase";
 
-// Demo data shown when Supabase env is not configured yet.
-// Once env vars + tables are filled in, real data replaces this.
+// Demo data shown when Supabase env is not configured yet,
+// OR when Supabase is configured but tables are missing / empty.
+// Once env vars + tables are filled in with real data, that replaces this.
 
 const demoCategories: Category[] = [
   { id: "c1", slug: "vegetables", name_nl: "Groenten", name_ar: "خضروات" },
@@ -40,11 +41,11 @@ function p(
 }
 
 const demoProducts: Product[] = [
-  // Vegetables
+  // ── Groenten ──────────────────────────────────────────────────────────────
   p("v1", "Verse tomaten", "طماطم طازجة", "vegetables",
     "https://images.unsplash.com/photo-1546470427-e3f3a3f8c2b6?w=800&q=80", 1.99, true),
   p("v2", "Komkommer", "خيار", "vegetables",
-    "https://images.unsplash.com/photo-1604977042946-1eecc30f269e?w=800&q=80", 0.89),
+    "https://images.unsplash.com/photo-1449300079323-02e209d9d3a6?w=800&q=80", 0.89),
   p("v3", "Paprika rood", "فلفل أحمر", "vegetables",
     "https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?w=800&q=80", 1.49, true),
   p("v4", "Aubergine", "باذنجان", "vegetables",
@@ -52,11 +53,11 @@ const demoProducts: Product[] = [
   p("v5", "Verse munt", "نعناع طازج", "vegetables",
     "https://images.unsplash.com/photo-1628557044797-f21a177c37ec?w=800&q=80", 0.99),
   p("v6", "Peterselie", "بقدونس", "vegetables",
-    "https://images.unsplash.com/photo-1583664580942-c997a2861c54?w=800&q=80", 0.99),
+    "https://images.unsplash.com/photo-1727950941918-a994b1b7dd14?w=800&q=80", 0.99),
   p("v7", "Courgette", "كوسا", "vegetables",
     "https://images.unsplash.com/photo-1622206151226-18ca2c9ab4a1?w=800&q=80", 1.29),
 
-  // Fruit
+  // ── Fruit ──────────────────────────────────────────────────────────────────
   p("f1", "Bananen", "موز", "fruit",
     "https://images.unsplash.com/photo-1603833665858-e61d17a86224?w=800&q=80", 1.29, true),
   p("f2", "Aardbeien", "فراولة", "fruit",
@@ -74,7 +75,7 @@ const demoProducts: Product[] = [
   p("f8", "Druiven", "عنب", "fruit",
     "https://images.unsplash.com/photo-1599819177626-b3aa9e6ca4f4?w=800&q=80", 2.79),
 
-  // Meat
+  // ── Vlees (halal) ──────────────────────────────────────────────────────────
   p("m1", "Verse kip (halal)", "دجاج طازج (حلال)", "meat",
     "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=800&q=80", 6.49, true),
   p("m2", "Rundergehakt", "لحم بقري مفروم", "meat",
@@ -86,7 +87,7 @@ const demoProducts: Product[] = [
   p("m5", "Kipfilet", "صدر دجاج", "meat",
     "https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=800&q=80", 8.99),
 
-  // Daily
+  // ── Dagelijks ──────────────────────────────────────────────────────────────
   p("d1", "Volle melk", "حليب كامل الدسم", "daily",
     "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=800&q=80", 1.19),
   p("d2", "Vers brood", "خبز طازج", "daily",
@@ -100,9 +101,9 @@ const demoProducts: Product[] = [
   p("d6", "Tahin (sesampasta)", "طحينة", "daily",
     "https://images.unsplash.com/photo-1611762687115-7b6c44a59c84?w=800&q=80", 4.49),
 
-  // Yemeni
+  // ── Jemenitisch ────────────────────────────────────────────────────────────
   p("y1", "Bint Al-Sahn", "بنت الصحن", "yemeni",
-    "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=80", 6.99, true),
+    "https://images.unsplash.com/photo-1556040220-4096d522378d?w=800&q=80", 6.99, true),
   p("y2", "Hadhrami honing", "عسل حضرمي", "yemeni",
     "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=800&q=80", 24.99, true),
   p("y3", "Mandi kruidenmix", "بهارات مندي", "yemeni",
@@ -110,13 +111,13 @@ const demoProducts: Product[] = [
   p("y4", "Hilbe (fenegriek pasta)", "حلبة", "yemeni",
     "https://images.unsplash.com/photo-1599909366516-6c1c7aaafe3a?w=800&q=80", 2.99),
   p("y5", "Saltah pasta", "صلطة جاهزة", "yemeni",
-    "https://images.unsplash.com/photo-1601001435957-74f0958a93c5?w=800&q=80", 4.49),
+    "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800&q=80", 4.49),
   p("y6", "Mocha koffiebonen", "بن مخا", "yemeni",
     "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=800&q=80", 12.99, true),
   p("y7", "Yemenitisch zwart komijn", "حبة البركة اليمنية", "yemeni",
-    "https://images.unsplash.com/photo-1599571234909-29ed5d1de8c2?w=800&q=80", 3.99),
+    "https://images.unsplash.com/photo-1607109829788-9f1e2b67bf8e?w=800&q=80", 3.99),
 
-  // Syrian
+  // ── Syrisch ────────────────────────────────────────────────────────────────
   p("s1", "Makdous (gevulde aubergines)", "مكدوس", "syrian",
     "https://images.unsplash.com/photo-1611080541599-8c6dbde6ed28?w=800&q=80", 7.99, true),
   p("s2", "Muhammara", "محمرة", "syrian",
@@ -124,7 +125,7 @@ const demoProducts: Product[] = [
   p("s3", "Aleppo zeep", "صابون حلب", "syrian",
     "https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?w=800&q=80", 3.99, true),
   p("s4", "Halawet el-Jibn", "حلاوة الجبن", "syrian",
-    "https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=800&q=80", 6.49),
+    "https://images.unsplash.com/photo-1559181567-c3190bfbf4f9?w=800&q=80", 6.49),
   p("s5", "Bulgur (fijn)", "برغل ناعم", "syrian",
     "https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?w=800&q=80", 2.99),
   p("s6", "Damascus rozenwater", "ماء ورد دمشقي", "syrian",
@@ -132,7 +133,7 @@ const demoProducts: Product[] = [
   p("s7", "Za'atar mix", "زعتر", "syrian",
     "https://images.unsplash.com/photo-1599909533839-f1bba2cf1a7e?w=800&q=80", 4.99, true),
   p("s8", "Ka'ak (sesambroodje)", "كعك بالسمسم", "syrian",
-    "https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=800&q=80", 2.49),
+    "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=800&q=80", 2.49),
 ];
 
 function o(
@@ -223,6 +224,31 @@ const demoOffers: Offer[] = [
   ),
 ];
 
+// ─── helpers ──────────────────────────────────────────────────────────────────
+
+function filterProducts(
+  list: Product[],
+  opts?: { category?: string; featured?: boolean; limit?: number },
+): Product[] {
+  let result = [...list];
+  if (opts?.category) result = result.filter((x) => x.category === opts.category);
+  if (opts?.featured) result = result.filter((x) => x.featured);
+  if (opts?.limit)    result = result.slice(0, opts.limit);
+  return result;
+}
+
+function filterOffers(
+  list: Offer[],
+  opts?: { activeOnly?: boolean; kind?: OfferKind },
+): Offer[] {
+  let result = [...list];
+  if (opts?.activeOnly) result = result.filter((x) => x.active);
+  if (opts?.kind)       result = result.filter((x) => x.kind === opts.kind);
+  return result;
+}
+
+// ─── public API ───────────────────────────────────────────────────────────────
+
 export async function fetchCategories(): Promise<Category[]> {
   const sb = getPublicClient();
   if (!sb) return demoCategories;
@@ -240,19 +266,16 @@ export async function fetchProducts(opts?: {
   limit?: number;
 }): Promise<Product[]> {
   const sb = getPublicClient();
-  if (!sb) {
-    let list = [...demoProducts];
-    if (opts?.category) list = list.filter((x) => x.category === opts.category);
-    if (opts?.featured) list = list.filter((x) => x.featured);
-    if (opts?.limit) list = list.slice(0, opts.limit);
-    return list;
-  }
+  if (!sb) return filterProducts(demoProducts, opts);
+
   let q = sb.from("products").select("*").order("created_at", { ascending: false });
   if (opts?.category) q = q.eq("category", opts.category);
   if (opts?.featured) q = q.eq("featured", true);
-  if (opts?.limit) q = q.limit(opts.limit);
+  if (opts?.limit)    q = q.limit(opts.limit);
+
   const { data, error } = await q;
-  if (error || !data) return [];
+  // Fall back to demo data when tables are missing or empty
+  if (error || !data || data.length === 0) return filterProducts(demoProducts, opts);
   return data as Product[];
 }
 
@@ -262,16 +285,14 @@ export async function fetchOffers(opts?: {
 }): Promise<Offer[]> {
   const activeOnly = opts?.activeOnly ?? true;
   const sb = getPublicClient();
-  if (!sb) {
-    let list = [...demoOffers];
-    if (activeOnly) list = list.filter((x) => x.active);
-    if (opts?.kind) list = list.filter((x) => x.kind === opts.kind);
-    return list;
-  }
+  if (!sb) return filterOffers(demoOffers, { ...opts, activeOnly });
+
   let q = sb.from("offers").select("*").order("created_at", { ascending: false });
   if (activeOnly) q = q.eq("active", true);
   if (opts?.kind) q = q.eq("kind", opts.kind);
+
   const { data, error } = await q;
-  if (error || !data) return [];
+  // Fall back to demo data when tables are missing or empty
+  if (error || !data || data.length === 0) return filterOffers(demoOffers, { ...opts, activeOnly });
   return data as Offer[];
 }
